@@ -28,9 +28,23 @@ export function CartProvider({ children }) {
     return cart.reduce((acc, item) => acc + Number(item.subtotal || 0), 0)
   }
 
+  function formatPrice(value) {
+    return Number(value).toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL"
+    })
+  }
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, getTotal }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        clearCart,
+        getTotal,
+        formatPrice
+      }}
     >
       {children}
     </CartContext.Provider>
